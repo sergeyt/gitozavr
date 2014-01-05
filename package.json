@@ -1,0 +1,29 @@
+{
+  "name": "meteor-git",
+  "version": "0.0.0",
+  "description": "Local github powered by meteor",
+  "author": "Sergey Todyshev <stodyshev@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sergeyt/meteor-git.git"
+  },
+  "keywords": [
+    "git",
+    "meteor"
+  ],
+  "contributors": [
+    "Sergey Todyshev <stodyshev@gmail.com>"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.7.1",
+    "grunt-coffeelint": "0.0.8",
+    "grunt-htmlhint": "~0.4.0",
+    "grunt-cli": "~0.1.11"
+  },
+  "scripts": {
+    "lint": "grunt lint",
+    "test": "grunt test"
+  }
+}

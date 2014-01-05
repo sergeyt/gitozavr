@@ -1,0 +1,1 @@
+Meteor.publish 'repos', -> Meteor.Repos.find()

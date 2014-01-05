@@ -1,0 +1,24 @@
+# Meteor packages used by this project, one per line.
+
+standard-app-packages
+less
+coffeescript
+npm
+underscore
+backbone
+spiderable
+user-session
+accounts-github
+accounts-google
+accounts-twitter
+jquery
+jquery-ui-bootstrap
+jquery-ui
+livequery
+preserve-inputs
+insecure
+bootstrap-3
+typeahead
+gravatar
+moment
+power-queue
