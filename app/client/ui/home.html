@@ -1,0 +1,9 @@
+<template name="home">
+	<ul class="list-group">
+		{{#each list}}
+		<li class="list-group-item">
+			<a href="/{{name}}">{{name}}</a>
+		</li>
+		{{/each}}
+	</ul>
+</template>

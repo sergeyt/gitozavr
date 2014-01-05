@@ -1,0 +1,23 @@
+<template name="repo">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/" title="Back" data-toggle="tooltip" data-placement="bottom">Back</a>
+		</div>
+
+		<div class="collapse navbar-collapse">
+			<form class="navbar-form navbar-left">
+				<div class="form-group">
+					<button type="button" class="btn btn-default btn-sync" title="Sync" data-toggle="tooltip" data-placement="bottom">
+						<i class="glyphicon glyphicon-refresh"></i>
+					</button>
+				</div>
+			</form>
+
+			{{>search}}
+		</div>
+	</nav>
+
+	<!-- TODO two columns -->
+	<!-- first column: uncommitted changes + history -->
+	<!-- second column: diff view per files -->
+</template>

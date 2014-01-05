@@ -5,7 +5,6 @@ less
 coffeescript
 npm
 underscore
-backbone
 spiderable
 user-session
 accounts-github
@@ -22,3 +21,4 @@ typeahead
 gravatar
 moment
 power-queue
+iron-router

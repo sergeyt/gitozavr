@@ -38,6 +38,7 @@ insertItems = (items) ->
 	for item in items
 		existing = Meteor.Repos.findOne {name: item.name}
 		if not existing
+			# TODO watch repo dir to get commit data
 			Meteor.Repos.insert item
 			console.log "inserted #{item.name}"
 

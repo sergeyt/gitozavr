@@ -1,17 +1,10 @@
 <head>
-  <title>Local GitHub powered by meteor</title>
+  <title>Local GitHub</title>
 </head>
 
 <body>
-{{>repos}}
 </body>
 
-<template name="repos">
-	<ul class="list-group">
-		{{#each list}}
-			<li class="list-group-item">
-				<a href="#/{{name}}">{{name}}</a>
-			</li>
-		{{/each}}
-	</ul>
+<template name="layout">
+	{{yield}}
 </template>
