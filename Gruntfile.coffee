@@ -20,7 +20,7 @@ module.exports = (grunt) ->
 			options:
 				no_tabs: {level: 'ignore'}
 				indentation: {level: 'ignore'}
-			dev: ['app/client/**/*.coffee', 'app/server/**/*.coffee']
+			dev: ['app/*.coffee', 'app/client/**/*.coffee', 'app/server/**/*.coffee']
 
 		htmlhint:
 			all:
