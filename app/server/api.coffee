@@ -25,5 +25,4 @@ Meteor.methods
 		if payload.error
 			console.error payload.error
 			return []
-		console.log "fetched commits", JSON.stringify payload.result, null, 2
 		return payload.result
