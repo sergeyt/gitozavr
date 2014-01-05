@@ -41,21 +41,9 @@
 					<h1 class="panel-title">Diffs</h1>
 				</div>
 				<div class="panel-body">
+					{{>diffs}}
 				</div>
 			</div>
-		</div>
-	</div>
-</template>
-
-<template name="commit">
-	<div class="commit">
-		<img src="{{gravatar author.email 40}}" class="avatar pull-left"/>
-		<div>
-			<div>
-				<span class="date pull-right">{{timeago date}}</span>
-				<span class="author">{{author.name}}</span>
-			</div>
-			<div class="message">{{message}}</div>
 		</div>
 	</div>
 </template>

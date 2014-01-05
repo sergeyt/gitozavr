@@ -46,7 +46,6 @@ insertItems = (items) ->
 Meteor.startup ->
 
 	findDirs Meteor.settings.public.root, (dirs)->
-		console.log "found repo dirs:", JSON.stringify dirs, null, 2
 		items = dirs.map (dir) -> makeRepoItem dir
 		# meteor requires fibers
 		(Fiber -> insertItems items).run()

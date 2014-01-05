@@ -1,0 +1,16 @@
+<template name="diffs">
+	<div class="diffs">
+		{{#each list}}
+			{{>diff}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="diff">
+	<div class="diff">
+		<div class="head">
+			<span>{{file}}</span>
+		</div>
+		<div class="content">{{content}}</div>
+	</div>
+</template>
