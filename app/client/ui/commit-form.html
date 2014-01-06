@@ -1,0 +1,21 @@
+<template name="commitform">
+	{{#unless changes.length}}
+	<div class="no-changes">no uncommitted changes</div>
+	{{/unless}}
+	<div class="commit-form">
+		<div class="head">
+			<span>uncommitted changes</span>
+			<span class="badge">{{changes.length}}</span>
+		</div>
+		<form>
+			<div class="form-group">
+				<span>Message:</span>
+				<input class="message form-control"/>
+			</div>
+			<div class="form-group">
+				<span>Description:</span>
+				<textarea class="description form-control"/>
+			</div>
+		</form>
+	</div>
+</template>

@@ -22,8 +22,9 @@
 
 	<!-- first column: uncommitted changes + history -->
 	<!-- second column: diff view per files -->
-	<div class="row">
+	<div class="row" style="padding: 8px">
 		<div class="col-md-4">
+			{{>commitform}}
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h1 class="panel-title">History</h1>
@@ -47,3 +48,4 @@
 		</div>
 	</div>
 </template>
+

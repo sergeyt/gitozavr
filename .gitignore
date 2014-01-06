@@ -3,3 +3,5 @@
 npm-debug.log
 node_modules
 smart.lock
+*.coffee.js
+*.coffee.js.map
