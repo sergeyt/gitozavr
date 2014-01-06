@@ -1,4 +1,5 @@
 {Repo, Commit, Status} = Meteor.require 'git'
+git = Meteor.require 'git.js'
 
 repopts = {is_bare: true}
 
@@ -40,30 +41,17 @@ stripDiff = (it) ->
 
 # changes impl
 fetchChanges = (repo, cb) ->
-	new Repo repo.dir, repopts, (err, repo) ->
-		return cb(err, null) if err
-		# todo github version has different signature
-		# prefix, command, postfix, options, args, callback
-		repo.git.call_git '', 'status -s', '', {}, [], (err, out) ->
-			return cb(err, null) if err
-			files = parseGitStatus out
-			# fetch diff for each file
+	git(repo.dir).status()
+		.then (files) ->
 			cb null, files
-
-parseGitStatus = (out) ->
-	console.log out
-	lines = out.split '\n'
-	lines = lines.filter (l) ->
-		s = l.substr(0, 2).trim()
-		s != 'D'
-	lines.map (l) ->
-		parts = l.trim().split ' '
-		return {type: parts[0], file: parts[1], content: 'todo'}
+		.fail (err) ->
+			cb err, null
 
 # web api
 Meteor.methods
 	# gets list of commits for given repo
 	commits: (repo) ->
+		console.log "fetching commits: #{repo}"
 		info = Meteor.Repos.findOne {name: repo}
 		if not info
 			console.error "unknown repo #{repo}"
@@ -72,6 +60,7 @@ Meteor.methods
 
 	# gets diffs of given commit
 	diffs: (repo, id, parent) ->
+		console.log "fetching diffs: #{repo}, #{id}"
 		info = Meteor.Repos.findOne {name: repo}
 		if not info
 			console.error "unknown repo #{repo}"
@@ -80,11 +69,9 @@ Meteor.methods
 
 	# gets list of uncommited changes
 	changes: (repo) ->
+		console.log "fetching changes: #{repo}"
 		info = Meteor.Repos.findOne {name: repo}
 		if not info
 			console.error "unknown repo #{repo}"
 			return []
-		res = sync (cb) -> fetchChanges info, cb
-		console.log 'fetched changes %d', res.length, JSON.stringify res[0], null, 2
-		return res
-
+		return sync (cb) -> fetchChanges info, cb
