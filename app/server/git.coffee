@@ -1,17 +1,19 @@
 # creates git object for given repo
-createGit = (repo) ->
-	info = Meteor.Repos.findOne {name: repo}
-	if not info
-		console.error "unknown repo #{repo}"
+createGit = (name) ->
+	repo = Meteor.Repos.findOne {name: name}
+	if not repo
+		console.error "unknown repo #{name}"
 		return null
-	Meteor.require('git.js')(info.dir)
+	Meteor.require('git.js')(repo.dir)
 
 # returns node-style async func for given promise
 async = (promise) ->
 	(cb) ->
 		promise
-		.then (res) -> cb null, res
-		.fail (err) -> cb err, null
+		.then (res) ->
+			cb null, res
+		.fail (err) ->
+			cb err, null
 
 sync = (promise) ->
 	payload = Meteor.sync async promise
@@ -27,5 +29,13 @@ Meteor.Git =
 		git = createGit(repo)
 		return [] if not git
 		sync git.log()
-	# todo diffs
-	# todo changes
+	# gets diffs of given commit
+	diffs: (repo, id) ->
+		git = createGit(repo)
+		return [] if not git
+		sync git.diff([id])
+	# gets list of uncommited changes
+	changes: (repo) ->
+		git = createGit(repo)
+		return [] if not git
+		sync git.status()
