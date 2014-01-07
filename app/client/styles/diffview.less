@@ -1,0 +1,53 @@
+@chunk: #eaf2f5;
+@add: #ddffdd;
+@del: #ffdddd;
+@normal: rgba(255,255,255,0.25);
+
+.diff-view {
+  font: 13px helvetica, arial, freesans, clean, sans-serif;
+  width: 100%;
+  background-color: white;
+  border-collapse: collapse;
+  border: 1px solid #e5e5e5;
+}
+
+.diff-view tr.chunk {
+  background-color: @chunk;
+}
+
+.diff-view tr.add {
+  background-color: @add;
+}
+
+.diff-view tr.del {
+  background-color: @del;
+}
+
+.diff-view tr.normal {
+  background-color: @normal;
+}
+
+.diff-view td {
+  border-right: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-size: 13px;
+}
+
+.diff-view td.lnum {
+  width: 1%;
+  padding-left: 8px;
+  padding-right: 8px;
+  line-height: 18px;
+  color: #aaa;
+  color: rgba(0,0,0,0.3);
+  vertical-align: top;
+  text-align: right;
+}
+
+.diff-view td.code {
+  padding-left: 8px;
+  padding-right: 8px;
+  color: #333;
+  white-space: nowrap;
+}

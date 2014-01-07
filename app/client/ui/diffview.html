@@ -1,0 +1,36 @@
+<template name="diffview">
+	<table class="diff-view">
+		<tbody>
+			{{#each lines}}
+			{{#if chunk}}
+			<tr class="chunk">
+				<td>...</td>
+				<td>...</td>
+				<td class="code">{{content}}</td>
+			</tr>
+			{{/if}}
+			{{#if normal}}
+			<tr class="normal">
+				<td class="lnum">{{ln1}}</td>
+				<td class="lnum">{{ln2}}</td>
+				<td class="code">{{content}}</td>
+			</tr>
+			{{/if}}
+			{{#if del}}
+			<tr class="del">
+				<td class="lnum">{{ln}}</td>
+				<td class="lnum empty"><span>&nbsp;</span></td>
+				<td class="code">{{content}}</td>
+			</tr>
+			{{/if}}
+			{{#if add}}
+			<tr class="add">
+				<td class="lnum empty"><span>&nbsp;</span></td>
+				<td class="lnum empty">{{ln}}</td>
+				<td class="code">{{content}}</td>
+			</tr>
+			{{/if}}
+			{{/each}}
+		</tbody>
+	</table>
+</template>

@@ -5,12 +5,12 @@ log =
 	error: (msg) ->
 		console.error msg
 	info: (msg) ->
-		verbose && console.error msg
+		verbose && console.log msg
 
 # returns impl function for given method
 dispatch = (method) ->
 	(repoName, rest...) ->
-		log.error "fetching #{method}"
+		log.info "fetching #{method}"
 		repo = Meteor.Repos.findOne {name: repoName}
 		if not repo
 			console.error "unknown repo #{repoName}"
