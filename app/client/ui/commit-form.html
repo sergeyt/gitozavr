@@ -2,6 +2,7 @@
 	{{#unless changes.length}}
 	<div class="no-changes">no uncommitted changes</div>
 	{{/unless}}
+	{{#if changes.length}}
 	<div class="commit-form">
 		<div class="head">
 			<span>uncommitted changes</span>
@@ -18,4 +19,5 @@
 			</div>
 		</form>
 	</div>
+	{{/if}}
 </template>
