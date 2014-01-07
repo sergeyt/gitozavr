@@ -8,7 +8,7 @@ replaceEnvVars = (s) ->
 	s.replace /\$([\w_])+/g, (match, name) ->
 		process.env[name] || name
 
-isRepoDir = (dir) -> fs.existsSync path.join dir, '.git'
+isGitRepo = (dir) -> fs.existsSync path.join dir, '.git'
 
 # find repo dirs from given root dir
 findDirs = (root, cb) ->
@@ -20,7 +20,7 @@ findDirs = (root, cb) ->
 	walker = walk.walk root, opts
 
 	walker.on 'directories', (dir, stats, next)->
-		dirs.push dir if isRepoDir dir
+		dirs.push dir if isGitRepo dir
 		next()
 
 	walker.on 'end', -> cb dirs
@@ -29,8 +29,10 @@ findDirs = (root, cb) ->
 makeRepoItem = (dir) ->
 	path = Npm.require 'path'
 	return {
-		dir: dir,
+		type: 'git'
 		name: path.basename dir
+		# todo url
+		dir: dir
 	}
 
 # inserts repos
