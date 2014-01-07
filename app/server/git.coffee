@@ -38,4 +38,4 @@ Meteor.Git =
 	changes: (repo) ->
 		git = createGit(repo)
 		return [] if not git
-		sync git.status()
+		sync git.diff()

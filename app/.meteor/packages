@@ -3,6 +3,7 @@
 standard-app-packages
 less
 coffeescript
+reactive-property
 npm
 underscore
 spiderable

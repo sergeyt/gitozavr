@@ -8,9 +8,17 @@
 
 <template name="diff">
 	<div class="diff">
-		<div class="head">
-			<span>{{from}}</span>
+		<div class="diff-head">
+			{{#if expanded}}
+			<i class="glyphicon glyphicon-chevron-down pull-left btn-expand"/>
+			{{/if}}
+			{{#unless expanded}}
+			<i class="glyphicon glyphicon-chevron-right pull-left btn-expand"/>
+			{{/unless}}
+			<span class="file">{{to}}</span>
 		</div>
+		{{#if expanded}}
 		{{>diffview}}
+		{{/if}}
 	</div>
 </template>

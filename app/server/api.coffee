@@ -10,6 +10,7 @@ log =
 # returns impl function for given method
 dispatch = (method) ->
 	(repoName, rest...) ->
+		return [] if not repoName
 		log.info "fetching #{method}"
 		repo = Meteor.Repos.findOne {name: repoName}
 		if not repo
