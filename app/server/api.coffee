@@ -1,3 +1,7 @@
+fs = Npm.require 'fs'
+path = Npm.require 'path'
+marked = Meteor.require 'marked'
+
 verbose = true
 
 # todo separate facility
@@ -30,5 +34,22 @@ Meteor.startup ->
 		slot[method] = dispatch(method)
 		return slot
 
+	api = _.extend methods...
+
+	# resolves readme for given repository
+	api.readme = (repoName) ->
+		return [] if not repoName
+		log.info "fetching readme for #{repoName}"
+		repo = Meteor.Repos.findOne {name: repoName}
+		if not repo
+			console.error "unknown repo #{repoName}"
+			return []
+		# resolve readme files
+		files = fs.readdirSync repo.dir
+		files = files.filter (file) -> (/^readme.(md|markdown)$/i).test(file)
+		return '' if not files.length
+		file = path.join repo.dir, files[0]
+		marked fs.readFileSync file, 'utf8'
+
 	# expose web api
-	Meteor.methods _.extend methods...
+	Meteor.methods api

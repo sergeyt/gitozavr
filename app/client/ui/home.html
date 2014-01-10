@@ -16,7 +16,7 @@
 				<div class="panel-body">
 					<ul class="list-group">
 						{{#each list}}
-						<li class="list-group-item repo-item">
+						<li class="list-group-item repo-item" data-name="{{name}}">
 							<a href="/{{name}}">{{name}}</a>
 						</li>
 						{{/each}}
@@ -30,7 +30,7 @@
 					<p class="panel-title">Info</p>
 				</div>
 				<div class="panel-body">
-					<!-- TODO load readme.md -->
+					{{{readme}}}
 				</div>
 			</div>
 		</div>
