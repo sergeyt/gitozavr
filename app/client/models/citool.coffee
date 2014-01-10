@@ -1,4 +1,4 @@
-Template.commitform.changes = ->
+Template.citool.changes = ->
 	repo = Session.get 'repo'
 	Meteor.call 'changes', repo, (err, res)->
 		return if err
@@ -6,7 +6,7 @@ Template.commitform.changes = ->
 		Session.set 'changes', res
 	return Session.get 'changes' || []
 
-Template.commitform.events
+Template.citool.events
 	'click .commit-form': ->
 		changes = Session.get 'changes' || []
 		Session.set 'diffs', changes
