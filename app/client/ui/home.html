@@ -1,9 +1,38 @@
 <template name="home">
-	<ul class="list-group">
-		{{#each list}}
-		<li class="list-group-item">
-			<a href="/{{name}}">{{name}}</a>
-		</li>
-		{{/each}}
-	</ul>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/" title="GitoZavr" data-toggle="tooltip" data-placement="bottom">GitoZavr</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			{{>search}}
+		</div>
+	</nav>
+	<div class="row" style="padding: 8px">
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p class="panel-title">Repositories</p>
+				</div>
+				<div class="panel-body">
+					<ul class="list-group">
+						{{#each list}}
+						<li class="list-group-item repo-item">
+							<a href="/{{name}}">{{name}}</a>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p class="panel-title">Info</p>
+				</div>
+				<div class="panel-body">
+					<!-- TODO load readme.md -->
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
