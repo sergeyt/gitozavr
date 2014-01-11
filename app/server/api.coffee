@@ -11,11 +11,15 @@ log =
 	info: (msg) ->
 		verbose && console.log msg
 
+logResult = (v) ->
+	log.info JSON.stringify v, null, 2
+	v
+
 # returns impl function for given method
 dispatch = (method) ->
 	(repoName, rest...) ->
 		return [] if not repoName
-		log.info "fetching #{method}"
+		log.info "fetching #{method}: #{repoName}"
 		repo = Meteor.Repos.findOne {name: repoName}
 		if not repo
 			console.error "unknown repo #{repoName}"

@@ -10,7 +10,8 @@ Router.map ->
 		path: '/:name'
 		template: 'repo'
 		data: ->
+			console.log 'route.repo.data'
 			name = @params.name
-			return Meteor.Repos.findOne {name: name}
+			Meteor.SetRepo name
 		load: ->
 			Session.set 'repo', @params.name

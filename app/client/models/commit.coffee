@@ -1,8 +1,8 @@
 Template.commit.css = ->
-	c = Session.get 'selected-commit'
-	return 'selected' if c?.id == this.id
+	c = Meteor.Repo.selected_commit()
+	return 'selected' if c == this.id
 	return ''
 
 Template.commit.events
 	'click .commit': (event, tpl) ->
-		Session.set 'selected-commit', tpl.data
+		Meteor.Repo.selectCommit(tpl.data.id)

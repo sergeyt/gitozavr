@@ -4,6 +4,7 @@ standard-app-packages
 less
 coffeescript
 reactive-property
+reactive-list
 npm
 underscore
 spiderable

@@ -7,6 +7,10 @@
 			"git": "https://github.com/CollectionFS/Meteor-reactive-property.git",
 			"branch": "master"
 		},
+		"reactive-list": {
+			"git": "https://github.com/CollectionFS/Meteor-reactive-list.git",
+			"branch": "master"
+		},
 		"moment": {},
 		"gravatar": {},
 		"crypto-base": {},
