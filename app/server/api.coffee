@@ -21,11 +21,10 @@ dispatch = (method) ->
 			console.error "unknown repo #{repoName}"
 			return []
 		git = -> Meteor.Git[method].call(null, repoName, rest...)
+		hg = -> Meteor.Mercurial[method].call(null, repoName, rest...)
 		switch repo.type
 			when 'git' then git()
-			when 'hg'
-				log.error 'mercurial repos are not supported yet'
-				return []
+			when 'hg' then hg()
 			else git()
 
 Meteor.startup ->

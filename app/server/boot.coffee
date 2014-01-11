@@ -9,6 +9,8 @@ replaceEnvVars = (s) ->
 		process.env[name] || name
 
 isGitRepo = (dir) -> fs.existsSync path.join dir, '.git'
+isHgRepo = (dir) -> fs.existsSync path.join dir, '.hg'
+isRepoDir = (dir) -> isGitRepo dir || isHgRepo dir
 
 # find repo dirs from given root dir
 findDirs = (root, cb) ->
@@ -25,11 +27,16 @@ findDirs = (root, cb) ->
 
 	walker.on 'end', -> cb dirs
 
+repoType = (dir) ->
+	return 'git' if isGitRepo dir
+	return 'hg' if isHgRepo dir
+	return 'unknown'
+
 # converts repo dir to repo info object
 makeRepoItem = (dir) ->
 	path = Npm.require 'path'
 	return {
-		type: 'git'
+		type: repoType dir
 		name: path.basename dir
 		# todo url
 		dir: dir
