@@ -1,6 +1,15 @@
 fs = Npm.require 'fs'
 path = Npm.require 'path'
 marked = Meteor.require 'marked'
+hljs = Meteor.require 'highlight.js'
+
+highlight = (code, lang) ->
+	if lang then hljs.highlight(lang, code).value else code
+
+# highlighting with highlight.js
+marked.setOptions
+	langPrefix: 'hljs code '
+	highlight: highlight
 
 verbose = true
 
