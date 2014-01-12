@@ -8,7 +8,6 @@ Template.home.events =
 	'click .repo-item': (event, tpl) ->
 		$e = $(event.target)
 		repo = $e.data 'name'
-		console.log "click #{repo}"
 		return if not repo
 		Session.set 'readme', 'fetching...'
 		Meteor.call 'readme', repo, (err, res) ->

@@ -5,5 +5,5 @@ Provides stupid UI to work with local git/mercurial repositories powered by mete
 ## Goals/Features
 
 * Easy to use
-* Reactive
+* Reactive and stupid UI
 * Built with twitter bootstrap HTML5 UI framework
