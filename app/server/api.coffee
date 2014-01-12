@@ -58,7 +58,7 @@ Meteor.startup ->
 			return []
 		# resolve readme files
 		files = fs.readdirSync repo.dir
-		files = files.filter (file) -> (/^readme.(md|markdown)$/i).test(file)
+		files = files.filter (file) -> (/^readme.(md|mkd|markdown)$/i).test(file)
 		return '' if not files.length
 		file = path.join repo.dir, files[0]
 		marked fs.readFileSync file, 'utf8'
