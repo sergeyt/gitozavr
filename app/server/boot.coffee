@@ -8,9 +8,15 @@ replaceEnvVars = (s) ->
 	s.replace /\$([\w_])+/g, (match, name) ->
 		process.env[name] || name
 
-isGitRepo = (dir) -> fs.existsSync path.join dir, '.git'
-isHgRepo = (dir) -> fs.existsSync path.join dir, '.hg'
-isRepoDir = (dir) -> isGitRepo dir || isHgRepo dir
+dirExists = (dir) ->
+	fs.existsSync(dir) and fs.lstatSync(dir).isDirectory()
+
+isGitRepo = (dir) ->
+	dirExists path.join dir, '.git'
+isHgRepo = (dir) ->
+	dirExists path.join dir, '.hg'
+isRepoDir = (dir) ->
+	isGitRepo dir or isHgRepo dir
 
 # find repo dirs from given root dir
 findDirs = (root, cb) ->
@@ -22,19 +28,19 @@ findDirs = (root, cb) ->
 	walker = walk.walk root, opts
 
 	walker.on 'directories', (dir, stats, next)->
-		dirs.push dir if isGitRepo dir
+		dirs.push dir if isRepoDir dir
 		next()
 
 	walker.on 'end', -> cb dirs
 
 repoType = (dir) ->
-	return 'git' if isGitRepo dir
-	return 'hg' if isHgRepo dir
-	return 'unknown'
+	switch
+		when isGitRepo dir then 'git'
+		when isHgRepo dir then 'hg'
+		else 'unknown'
 
 # converts repo dir to repo info object
 makeRepoItem = (dir) ->
-	path = Npm.require 'path'
 	return {
 		type: repoType dir
 		name: path.basename dir
@@ -53,6 +59,9 @@ insertItems = (items) ->
 
 # bootstrap script
 Meteor.startup ->
+
+	# todo smart update of existing repositories
+	Meteor.Repos.remove {}
 
 	findDirs Meteor.settings.public.root, (dirs)->
 		items = dirs.map (dir) -> makeRepoItem dir
