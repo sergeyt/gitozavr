@@ -30,5 +30,12 @@ Meteor.SetRepo = (name) ->
 	repo.show_changes = ->
 		repo.selected_commit.set null
 
+	repo.commit = (opts, cb) ->
+		Meteor.call 'commit', name, opts, (err) ->
+			return cb(err) if err
+			repo.selected_commit.set null
+			repo.changes.update()
+			cb null, 'ok'
+
 	Meteor.Repo = repo
 	repo

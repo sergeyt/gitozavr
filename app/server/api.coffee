@@ -28,7 +28,8 @@ logResult = (v) ->
 dispatch = (method) ->
 	(repoName, rest...) ->
 		return [] if not repoName
-		log.info "fetching #{method}: #{repoName}"
+		# todo log all parameters
+		log.info "calling #{method}: #{repoName}"
 		repo = Meteor.Repos.findOne {name: repoName}
 		if not repo
 			console.error "unknown repo #{repoName}"
@@ -41,7 +42,7 @@ dispatch = (method) ->
 			else git()
 
 Meteor.startup ->
-	methods = ['commits', 'diffs', 'changes'].map (method) ->
+	methods = ['commits', 'diffs', 'changes', 'commit'].map (method) ->
 		slot = {}
 		slot[method] = dispatch(method)
 		return slot

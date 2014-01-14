@@ -40,3 +40,8 @@ Meteor.Mercurial =
 		hg = create(repo)
 		return [] if not hg
 		sync hg.diff()
+	# commit changes
+	commit: (repo, opts) ->
+		hg = create(repo)
+		return [] if not hg
+		sync hg.commit(opts)

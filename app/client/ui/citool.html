@@ -8,19 +8,17 @@
 			<span>uncommitted changes</span>
 			<span class="badge">{{changes.length}}</span>
 		</div>
-		<form>
-			<div class="form-group">
-				<span>Message:</span>
-				<input class="message form-control"/>
-			</div>
-			<div class="form-group">
-				<span>Description:</span>
-				<textarea class="description form-control"/>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-default btn-commit" title="Commit selected changes" data-toggle="tooltip" data-placement="bottom">Commit</button>
-			</div>
-		</form>
+		<div class="form-group">
+			<span>Message:</span>
+			<input class="message form-control" id="commit-message"/>
+		</div>
+		<div class="form-group">
+			<span>Description:</span>
+			<textarea class="description form-control" id="commit-description"/>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-default btn-commit" title="Commit selected changes" data-toggle="tooltip" data-placement="bottom">Commit</button>
+		</div>
 	</div>
 	{{/if}}
 </template>
