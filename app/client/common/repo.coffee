@@ -1,26 +1,34 @@
 Meteor.Repo = {}
 
 Meteor.SetRepo = (name) ->
-	console.log "initializing common repo model: #{name}"
 	repo = Meteor.Repos.findOne {name: name}
 	repo = {name: name} if not repo
+
+	# list of commits
 	repo.commits = new Meteor.Utils.ItemList 'commits', [name]
 
-	dep_commit = new Deps.Dependency
-	selected_commit = null
-	repo.selected_commit = ->
-		dep_commit.depend()
-		selected_commit
+	# id of selected commit
+	repo.selected_commit = new ReactiveProperty null
 
+	# list of diffs for selected commit
 	diff_args =  ->
-		return [] if not selected_commit
-		[name, selected_commit]
-	repo.diffs = new Meteor.Utils.ItemList 'diffs', diff_args, {polling: false}
+		id = repo.selected_commit.get()
+		return [] if not id
+		[name, id]
+	diffs = new Meteor.Utils.ItemList 'diffs', diff_args, {polling: false}
 
-	repo.selectCommit = (id) ->
-		selected_commit = id
-		dep_commit.changed()
-		repo.diffs.update()
+	repo.diffs = ->
+		id = repo.selected_commit.get()
+		if id then diffs.fetch() else repo.changes.fetch()
+
+	repo.select_commit = (id) ->
+		repo.selected_commit.set id
+		diffs.update()
+
+	# list of recent changes
+	repo.changes = new Meteor.Utils.ItemList 'changes', [name]
+	repo.show_changes = ->
+		repo.selected_commit.set null
 
 	Meteor.Repo = repo
 	repo

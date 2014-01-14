@@ -1,6 +1,6 @@
 # diffs helpers
 Template.diffs.list = ->
-	Meteor.Repo.diffs.fetch()
+	Meteor.Repo.diffs()
 
 # diff helpers
 Template.diff.expanded = ->

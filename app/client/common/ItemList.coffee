@@ -12,7 +12,6 @@ class ItemList
 		self = @
 		if _.isFunction @args
 			Deps.autorun ->
-				log "#{self.method} deps changed"
 				self.load()
 
 	# returns array of items
@@ -28,7 +27,6 @@ class ItemList
 	# loads list
 	load: ->
 		args = @method_args()
-		log "loading #{@method} #{JSON.stringify(args)}"
 		handler = @on_load.bind(@)
 		Meteor.apply @method, args, {wait: true}, handler
 
