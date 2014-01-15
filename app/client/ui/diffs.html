@@ -9,7 +9,7 @@
 <template name="diff">
 	<div class="diff">
 		<div class="diff-head">
-			<i class="glyphicon {{#if expanded}}glyphicon-chevron-down{{else}}glyphicon-chevron-right{{/if}} pull-left btn-expand"/>
+			<i class="{{#if expanded}}expand-icon{{else}}collapse-icon{{/if}} pull-left btn-expand"/>
 			<span class="file">{{to}}</span>
 		</div>
 		{{#if expanded}}
